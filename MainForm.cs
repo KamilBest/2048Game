@@ -61,7 +61,9 @@ namespace _2048
                 resetViewPanels();
                 pressA.BackColor = Color.Orange;
                 //pressA.BackColor = Color.Orange;
-
+                board.moveLeft();
+                board.drawField();
+                drawTable();
 
             
             }
@@ -70,6 +72,8 @@ namespace _2048
                 resetViewPanels();
                 pressD.BackColor = Color.Orange;
                 board.moveRight();
+                board.drawField();
+
                 drawTable();
 
             }
@@ -77,6 +81,10 @@ namespace _2048
             {
                 resetViewPanels();
                 pressW.BackColor = Color.Orange;
+                board.moveUp();
+                board.drawField();
+
+                drawTable();
 
 
             }
@@ -84,6 +92,10 @@ namespace _2048
             {
                 resetViewPanels();
                 pressS.BackColor = Color.Orange;
+                board.moveBottom();
+                board.drawField();
+
+                drawTable();
 
             }
         }
