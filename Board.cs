@@ -11,7 +11,6 @@ namespace _2048
         const int BOARD_SIZE = 4;
         public Cell[,] gameBoard;
         Random random = new Random();
-        int addNum = 2;
 
         public Board()
         {
@@ -46,17 +45,63 @@ namespace _2048
             {
                 row = random.Next(0, BOARD_SIZE);
                 column = random.Next(0, BOARD_SIZE);
-                if (gameBoard[row, column].getValue() == 2)
-                    gameBoard[row, column].doubleValue();
-                else {
+               if (gameBoard[row, column].getValue() == 0) {
                     gameBoard[row, column].setFirstValue();
                     break;
                 }
-            } while (true);
+                else
+                    continue;
+                
+            } while (!checkGameOver());
+        }
+        public bool checkGameOver()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (i - 1 >= 0)
+                    {
+                        if (gameBoard[i - 1,j].getValue() == gameBoard[i,j].getValue())
+                        {
+                            return true;
+                        }
+                    }
+
+                    if (i + 1 < 4)
+                    {
+                        if (gameBoard[i + 1,j].getValue() == gameBoard[i,j].getValue())
+                        {
+                            return true;
+                        }
+                    }
+
+                    if (j - 1 >= 0)
+                    {
+                        if (gameBoard[i,j - 1].getValue() == gameBoard[i,j].getValue())
+                        {
+                            return true;
+                        }
+                    }
+
+                    if (j + 1 < 4)
+                    {
+                        if (gameBoard[i,j + 1].getValue() == gameBoard[i,j].getValue())
+                        {
+                            return true;
+                        }
+                    }
+
+                    if (gameBoard[i,j].getValue() == 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
         public void moveUp()
         {
-            bool add = false;
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -71,7 +116,6 @@ namespace _2048
                         {
                             gameBoard[i, j].doubleValue();
                             gameBoard[i, k].resetValue();
-                            add = true;
                             break;
                         }
                         else
@@ -81,7 +125,6 @@ namespace _2048
                                 gameBoard[i, j].setValue(gameBoard[i, k].getValue());
                                 gameBoard[i, k].resetValue();
                                 j--;
-                                add = true;
                                 break;
                             }
                             else if (gameBoard[i, j].getValue() != 0)
@@ -92,14 +135,10 @@ namespace _2048
                     }
                 }
             }
-            if (add)
-            {
-                ++addNum;
-            }
+           
         }
         public void moveRight()
         {
-            bool add = false;
 
             for (int j = 0; j < 4; j++)
             {
@@ -115,7 +154,6 @@ namespace _2048
                         {
                             gameBoard[i, j].doubleValue();
                             gameBoard[k, j].resetValue();
-                            add = true;
                             break;
                         }
                         else
@@ -125,7 +163,6 @@ namespace _2048
                                 gameBoard[i, j].setValue(gameBoard[k, j].getValue());
                                 gameBoard[k, j].resetValue();
                                 i++;
-                                add = true;
                                 break;
                             }
                             else if (gameBoard[i, j].getValue() != 0)
@@ -136,14 +173,10 @@ namespace _2048
                     }
                 }
             }
-            if (add)
-            {
-                ++addNum;
-            }
+            
         }
         public void moveBottom()
         {
-            bool add = false;
 
             for (int i = 0; i < 4; i++)
             {
@@ -159,7 +192,6 @@ namespace _2048
                         {
                             gameBoard[i, j].doubleValue();
                             gameBoard[i, k].resetValue();
-                            add = true;
                             break;
                         }
                         else
@@ -169,7 +201,6 @@ namespace _2048
                                 gameBoard[i, j].setValue(gameBoard[i, k].getValue());
                                 gameBoard[i, k].resetValue(); ;
                                 j++;
-                                add = true;
                                 break;
                             }
                             else if (gameBoard[i, j].getValue() != 0)
@@ -180,14 +211,10 @@ namespace _2048
                     }
                 }
             }
-            if (add)
-            {
-                ++addNum;
-            }
+         
         }
         public void moveLeft()
         {
-            bool add = false;
 
             for (int j = 0; j < 4; j++)
             {
@@ -203,7 +230,6 @@ namespace _2048
                         {
                             gameBoard[i, j].doubleValue();
                             gameBoard[k, j].resetValue();
-                            add = true;
                             break;
                         }
                         else
@@ -213,7 +239,6 @@ namespace _2048
                                 gameBoard[i, j].setValue(gameBoard[k, j].getValue());
                                 gameBoard[k, j].resetValue();
                                 i--;
-                                add = true;
                                 break;
                             }
                             else if (gameBoard[i, j].getValue() != 0)
@@ -224,10 +249,7 @@ namespace _2048
                     }
                 }
             }
-            if (add)
-            {
-                ++addNum;
-            }
+            
         }
 
 

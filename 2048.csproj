@@ -47,9 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="Buttons.cs" />
     <Compile Include="Cell.cs" />
-    <Compile Include="Game.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
