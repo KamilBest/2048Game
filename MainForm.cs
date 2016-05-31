@@ -44,7 +44,7 @@ namespace _2048
         }
 
 
-        private void changeBackColours()
+        private void changeBackColors()
         {
             int fieldValue = 0;
             for (int i = 0; i <= this.tableLayoutPanel1.ColumnCount - 1; i++)
@@ -56,34 +56,34 @@ namespace _2048
                     switch (fieldValue)
                     {
                         case 0:
-                            c.BackColor = ColorTranslator.FromHtml("#fff");
+                            c.BackColor = ColorTranslator.FromHtml("#eee4da");
                             break;
                         case 2:
-                            c.BackColor = ColorTranslator.FromHtml("#ebebeb");
+                            c.BackColor = ColorTranslator.FromHtml("#eee4da");
 
                             break;
                         case 4:
-                            c.BackColor = ColorTranslator.FromHtml("#d6d6d6");
+                            c.BackColor = ColorTranslator.FromHtml("#ede0c8");
 
                             break;
                         case 8:
-                            c.BackColor = ColorTranslator.FromHtml("#c2c2c2");
+                            c.BackColor = ColorTranslator.FromHtml("#f2b179");
 
                             break;
                         case 16:
-                            c.BackColor = ColorTranslator.FromHtml("#adadad");
+                            c.BackColor = ColorTranslator.FromHtml("#f59563");
 
                             break;
                         case 32:
-                            c.BackColor = ColorTranslator.FromHtml("#999999");
+                            c.BackColor = ColorTranslator.FromHtml("#f67c5f");
 
                             break;
                         case 64:
-                            c.BackColor = ColorTranslator.FromHtml("#858585");
+                            c.BackColor = ColorTranslator.FromHtml("#f65e3b");
 
                             break;
                         case 128:
-                            c.BackColor = ColorTranslator.FromHtml("#707070");
+                            c.BackColor = ColorTranslator.FromHtml("#edcf72");
 
                             break;
                         case 256:
@@ -119,47 +119,57 @@ namespace _2048
         {
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
-                resetViewPanels();
-                pressA.BackColor = Color.Orange;
-                //pressA.BackColor = Color.Orange;
-                board.moveLeft();
-                board.drawField();
-                drawTable();
+                if (!board.checkGameOver())
+                {
+                    resetViewPanels();
+                    pressA.BackColor = Color.Orange;
+                    //pressA.BackColor = Color.Orange;
+                    board.moveLeft();
+                    board.drawField();
+                    drawTable();
+                }
+                
 
 
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
-                resetViewPanels();
-                pressD.BackColor = Color.Orange;
-                board.moveRight();
-                board.drawField();
+                if (!board.checkGameOver())
+                {
+                    resetViewPanels();
+                    pressD.BackColor = Color.Orange;
+                    board.moveRight();
+                    board.drawField();
 
-                drawTable();
-
+                    drawTable();
+                }
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
-                resetViewPanels();
-                pressW.BackColor = Color.Orange;
-                board.moveUp();
-                board.drawField();
+                    if (!board.checkGameOver())
+                    {
+                        resetViewPanels();
+                        pressW.BackColor = Color.Orange;
+                        board.moveUp();
+                        board.drawField();
 
-                drawTable();
-
+                        drawTable();
+                    }
 
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
-                resetViewPanels();
-                pressS.BackColor = Color.Orange;
-                board.moveBottom();
-                board.drawField();
+                if (!board.checkGameOver())
+                {
+                    resetViewPanels();
+                    pressS.BackColor = Color.Orange;
+                    board.moveBottom();
+                    board.drawField();
 
-                drawTable();
-
+                    drawTable();
+                }
             }
-            changeBackColours();
+            changeBackColors();
         }
     }
 }

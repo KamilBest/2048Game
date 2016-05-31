@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace _2048
 {
     class Board : Cell
@@ -40,19 +40,19 @@ namespace _2048
         */
         public void drawField()
         {
-            int row, column;
-            do
+            int row, column, value;
+            bool notValid = true;
+            while (notValid)
             {
                 row = random.Next(0, BOARD_SIZE);
                 column = random.Next(0, BOARD_SIZE);
-               if (gameBoard[row, column].getValue() == 0) {
-                    gameBoard[row, column].setFirstValue();
-                    break;
+                if (gameBoard[row, column].getValue() == 0)
+                {
+                    value = random.Next(10) < 9 ? 2 : 4;
+                    gameBoard[row, column].setValue(value);
+                    notValid = false;
                 }
-                else
-                    continue;
-                
-            } while (!checkGameOver());
+            }
         }
         public bool checkGameOver()
         {
@@ -62,43 +62,43 @@ namespace _2048
                 {
                     if (i - 1 >= 0)
                     {
-                        if (gameBoard[i - 1,j].getValue() == gameBoard[i,j].getValue())
+                        if (gameBoard[i - 1, j].getValue() == gameBoard[i, j].getValue())
                         {
-                            return true;
+                            return false;
                         }
                     }
 
                     if (i + 1 < 4)
                     {
-                        if (gameBoard[i + 1,j].getValue() == gameBoard[i,j].getValue())
+                        if (gameBoard[i + 1, j].getValue() == gameBoard[i, j].getValue())
                         {
-                            return true;
+                            return false;
                         }
                     }
 
                     if (j - 1 >= 0)
                     {
-                        if (gameBoard[i,j - 1].getValue() == gameBoard[i,j].getValue())
+                        if (gameBoard[i, j - 1].getValue() == gameBoard[i, j].getValue())
                         {
-                            return true;
+                            return false;
                         }
                     }
 
                     if (j + 1 < 4)
                     {
-                        if (gameBoard[i,j + 1].getValue() == gameBoard[i,j].getValue())
+                        if (gameBoard[i, j + 1].getValue() == gameBoard[i, j].getValue())
                         {
-                            return true;
+                            return false;
                         }
                     }
 
-                    if (gameBoard[i,j].getValue() == 0)
+                    if (gameBoard[i, j].getValue() == 0)
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
         public void moveUp()
         {
@@ -135,7 +135,7 @@ namespace _2048
                     }
                 }
             }
-           
+
         }
         public void moveRight()
         {
@@ -173,7 +173,7 @@ namespace _2048
                     }
                 }
             }
-            
+
         }
         public void moveBottom()
         {
@@ -211,7 +211,7 @@ namespace _2048
                     }
                 }
             }
-         
+
         }
         public void moveLeft()
         {
@@ -249,7 +249,7 @@ namespace _2048
                     }
                 }
             }
-            
+
         }
 
 
