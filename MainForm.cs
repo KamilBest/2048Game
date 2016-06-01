@@ -119,53 +119,65 @@ namespace _2048
         {
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
-                if (!board.checkGameOver())
+                if (board.moveCellsLeft())
                 {
                     resetViewPanels();
-                    pressA.BackColor = Color.Orange;
-                    //pressA.BackColor = Color.Orange;
-                    board.moveLeft();
-                    board.drawField();
+                    pressW.BackColor = Color.Orange;
+                    if (board.isGameOver())
+                    {
+                        //board.setArrowActive(false);
+                    }
+                    else {
+                        board.addNewField();
+                    }
                     drawTable();
                 }
-                
-
-
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
-                if (!board.checkGameOver())
+                if (board.moveCellsRight())
                 {
                     resetViewPanels();
-                    pressD.BackColor = Color.Orange;
-                    board.moveRight();
-                    board.drawField();
-
+                    pressW.BackColor = Color.Orange;
+                    if (board.isGameOver())
+                    {
+                        //board.setArrowActive(false);
+                    }
+                    else {
+                        board.addNewField();
+                    }
                     drawTable();
                 }
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
-                    if (!board.checkGameOver())
+                if (board.moveCellsUp())
+                {
+                    resetViewPanels();
+                    pressW.BackColor = Color.Orange;
+                    if (board.isGameOver())
                     {
-                        resetViewPanels();
-                        pressW.BackColor = Color.Orange;
-                        board.moveUp();
-                        board.drawField();
-
-                        drawTable();
+                        //board.setArrowActive(false);
                     }
-
+                    else {
+                        board.addNewField();
+                    }
+                    drawTable();
+                }
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
-                if (!board.checkGameOver())
+                if (board.moveCellsDown())
                 {
                     resetViewPanels();
-                    pressS.BackColor = Color.Orange;
-                    board.moveBottom();
-                    board.drawField();
-
+                    pressW.BackColor = Color.Orange;
+                    if (board.isGameOver())
+                    {
+                        //board.setArrowActive(false);
+                    }
+                    else {
+                        board.addNewField();
+                    }
                     drawTable();
                 }
             }

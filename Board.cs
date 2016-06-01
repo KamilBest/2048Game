@@ -30,15 +30,15 @@ namespace _2048
                     gameBoard[i, j] = new Cell();
                 }
             }
-            drawField();
-            drawField();
+            addNewField();
+            addNewField();
         }
 
         /**
         draw field and set there beggining value value 
             if field has 2 as a value double it and draw another field.
         */
-        public void drawField()
+        public void addNewField()
         {
             int row, column, value;
             bool notValid = true;
@@ -54,45 +54,26 @@ namespace _2048
                 }
             }
         }
-        public bool checkGameOver()
+
+        /**
+        Check whether game is over. 
+            If grid is full and we can't do any move.
+    */
+        public bool isGameOver()
         {
-            for (int i = 0; i < 4; i++)
+            return isGridFull() && !isMovePossible();
+        }
+
+        /**
+        Check whether grid is full. (Every single cell can't be 0 value).
+        */
+        private bool isGridFull()
+        {
+            for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int columns = 0; columns < BOARD_SIZE; columns++)
                 {
-                    if (i - 1 >= 0)
-                    {
-                        if (gameBoard[i - 1, j].getValue() == gameBoard[i, j].getValue())
-                        {
-                            return false;
-                        }
-                    }
-
-                    if (i + 1 < 4)
-                    {
-                        if (gameBoard[i + 1, j].getValue() == gameBoard[i, j].getValue())
-                        {
-                            return false;
-                        }
-                    }
-
-                    if (j - 1 >= 0)
-                    {
-                        if (gameBoard[i, j - 1].getValue() == gameBoard[i, j].getValue())
-                        {
-                            return false;
-                        }
-                    }
-
-                    if (j + 1 < 4)
-                    {
-                        if (gameBoard[i, j + 1].getValue() == gameBoard[i, j].getValue())
-                        {
-                            return false;
-                        }
-                    }
-
-                    if (gameBoard[i, j].getValue() == 0)
+                    if (gameBoard[rows, columns].isZeroValue())
                     {
                         return false;
                     }
@@ -100,159 +81,289 @@ namespace _2048
             }
             return true;
         }
-        public void moveUp()
+
+        /**
+        Check whether move is possible.
+            First loops for checking right and left move, second for up and down move.
+        */
+        private bool isMovePossible()
         {
-            for (int i = 0; i < 4; i++)
+            for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int columns = 0; columns < (BOARD_SIZE - 1); columns++)
                 {
-                    for (int k = j + 1; k < 4; k++)
+                    int columnsPlus = columns + 1;
+                    if (gameBoard[rows, columns].getValue() == gameBoard[rows, columnsPlus].getValue())
                     {
-                        if (gameBoard[i, k].getValue() == 0)
-                        {
-                            continue;
-                        }
-                        else if (gameBoard[i, k].getValue() == gameBoard[i, j].getValue())
-                        {
-                            gameBoard[i, j].doubleValue();
-                            gameBoard[i, k].resetValue();
-                            break;
-                        }
-                        else
-                        {
-                            if (gameBoard[i, j].getValue() == 0 && gameBoard[i, k].getValue() != 0)
-                            {
-                                gameBoard[i, j].setValue(gameBoard[i, k].getValue());
-                                gameBoard[i, k].resetValue();
-                                j--;
-                                break;
-                            }
-                            else if (gameBoard[i, j].getValue() != 0)
-                            {
-                                break;
-                            }
-                        }
+                        return true;
                     }
                 }
             }
 
+            for (int columns = 0; columns < BOARD_SIZE; columns++)
+            {
+                for (int rows = 0; rows < (BOARD_SIZE - 1); rows++)
+                {
+                    int rowsPlus = rows + 1;
+                    if (gameBoard[rows, columns].getValue() == gameBoard[rowsPlus, columns].getValue())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
-        public void moveRight()
-        {
 
-            for (int j = 0; j < 4; j++)
+        /**
+        Move cells up.
+        */
+        public bool moveCellsUp()
+        {
+            bool dirty = false;
+
+            if (moveCellsUpLoop())
+                dirty = true;
+
+            for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                for (int i = 3; i >= 0; i--)
+                for (int columns = 0; columns < (BOARD_SIZE - 1); columns++)
                 {
-                    for (int k = i - 1; k >= 0; k--)
-                    {
-                        if (gameBoard[k, j].getValue() == 0)
-                        {
-                            continue;
-                        }
-                        else if (gameBoard[k, j].getValue() == gameBoard[i, j].getValue())
-                        {
-                            gameBoard[i, j].doubleValue();
-                            gameBoard[k, j].resetValue();
-                            break;
-                        }
-                        else
-                        {
-                            if (gameBoard[i, j].getValue() == 0 && gameBoard[k, j].getValue() != 0)
-                            {
-                                gameBoard[i, j].setValue(gameBoard[k, j].getValue());
-                                gameBoard[k, j].resetValue();
-                                i++;
-                                break;
-                            }
-                            else if (gameBoard[i, j].getValue() != 0)
-                            {
-                                break;
-                            }
-                        }
-                    }
+                    int columnsPlus = columns + 1;
+                    dirty = combineCells(rows, columnsPlus, rows, columns, dirty);
                 }
             }
 
+            if (moveCellsUpLoop())
+                dirty = true;
+
+            return dirty;
         }
-        public void moveBottom()
-        {
+        /**
+        Looped move cells up.
 
-            for (int i = 0; i < 4; i++)
+        */
+        private bool moveCellsUpLoop()
+        {
+            bool dirty = false;
+
+            for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                for (int j = 3; j >= 0; j--)
+                bool columnDirty = false;
+                do
                 {
-                    for (int k = j - 1; k >= 0; k--)
+                    columnDirty = false;
+                    for (int columns = 0; columns < (BOARD_SIZE - 1); columns++)
                     {
-                        if (gameBoard[i, k].getValue() == 0)
+                        int columnsPlus = columns + 1;
+                        bool cellDirty = moveCell(rows, columnsPlus, rows, columns);
+                        if (cellDirty)
                         {
-                            continue;
-                        }
-                        else if (gameBoard[i, k] == gameBoard[i, j])
-                        {
-                            gameBoard[i, j].doubleValue();
-                            gameBoard[i, k].resetValue();
-                            break;
-                        }
-                        else
-                        {
-                            if (gameBoard[i, j].getValue() == 0 && gameBoard[i, k].getValue() != 0)
-                            {
-                                gameBoard[i, j].setValue(gameBoard[i, k].getValue());
-                                gameBoard[i, k].resetValue(); ;
-                                j++;
-                                break;
-                            }
-                            else if (gameBoard[i, j].getValue() != 0)
-                            {
-                                break;
-                            }
+                            columnDirty = true;
+                            dirty = true;
                         }
                     }
-                }
+                } while (columnDirty);
             }
 
+            return dirty;
         }
-        public void moveLeft()
-        {
 
-            for (int j = 0; j < 4; j++)
+        /**
+        Move cells down.
+        */
+        public bool moveCellsDown()
+        {
+            bool dirty = false;
+
+            if (moveCellsDownLoop()) dirty = true;
+
+            for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                for (int i = 0; i < 4; i++)
+                for (int columns = BOARD_SIZE - 1; columns > 0; columns--)
                 {
-                    for (int k = i + 1; k < 4; k++)
-                    {
-                        if (gameBoard[k, j].getValue() == 0)
-                        {
-                            continue;
-                        }
-                        else if (gameBoard[k, j] == gameBoard[i, j])
-                        {
-                            gameBoard[i, j].doubleValue();
-                            gameBoard[k, j].resetValue();
-                            break;
-                        }
-                        else
-                        {
-                            if (gameBoard[i, j].getValue() == 0 && gameBoard[k, j].getValue() != 0)
-                            {
-                                gameBoard[i, j].setValue(gameBoard[k, j].getValue());
-                                gameBoard[k, j].resetValue();
-                                i--;
-                                break;
-                            }
-                            else if (gameBoard[i, j].getValue() != 0)
-                            {
-                                break;
-                            }
-                        }
-                    }
+                    int columnsPlus = columns - 1;
+                    dirty = combineCells(rows, columnsPlus, rows, columns, dirty);
                 }
             }
 
+            if (moveCellsDownLoop()) dirty = true;
+
+            return dirty;
+        }
+        /**
+       Looped move cells down.
+
+       */
+        private bool moveCellsDownLoop()
+        {
+            bool dirty = false;
+
+            for (int rows = 0; rows < BOARD_SIZE; rows++)
+            {
+                bool columnDirty = false;
+                do
+                {
+                    columnDirty = false;
+                    for (int columns = BOARD_SIZE - 1; columns > 0; columns--)
+                    {
+                        int columnsPlus = columns - 1;
+                        bool cellDirty = moveCell(rows, columnsPlus, rows, columns);
+                        if (cellDirty)
+                        {
+                            columnDirty = true;
+                            dirty = true;
+                        }
+                    }
+                } while (columnDirty);
+            }
+
+            return dirty;
+        }
+        /**
+        Move cells left.
+        */
+        public bool moveCellsLeft()
+        {
+            bool dirty = false;
+
+            if (moveCellsLeftLoop()) dirty = true;
+
+            for (int columns = 0; columns < BOARD_SIZE; columns++)
+            {
+                for (int rows = 0; rows < (BOARD_SIZE - 1); rows++)
+                {
+                    int rowsPlus = rows + 1;
+                    dirty = combineCells(rowsPlus, columns, rows, columns, dirty);
+                }
+            }
+
+            if (moveCellsLeftLoop()) dirty = true;
+
+            return dirty;
+        }
+        /**
+       Looped move cells left.
+
+       */
+        private bool moveCellsLeftLoop()
+        {
+            bool dirty = false;
+
+            for (int columns = 0; columns < BOARD_SIZE; columns++)
+            {
+                bool rowDirty = false;
+                do
+                {
+                    rowDirty = false;
+                    for (int rows = 0; rows < (BOARD_SIZE - 1); rows++)
+                    {
+                        int rowsPlus = rows + 1;
+                        bool cellDirty = moveCell(rowsPlus, columns, rows, columns);
+                        if (cellDirty)
+                        {
+                            rowDirty = true;
+                            dirty = true;
+                        }
+                    }
+                } while (rowDirty);
+            }
+
+            return dirty;
+        }
+        /**
+        Move cells right.
+        */
+        public bool moveCellsRight()
+        {
+            bool dirty = false;
+
+            if (moveCellsRightLoop()) dirty = true;
+
+            for (int columns = 0; columns < BOARD_SIZE; columns++)
+            {
+                for (int rows = (BOARD_SIZE - 1); rows > 0; rows--)
+                {
+                    int rowsPlus = rows - 1;
+                    dirty = combineCells(rowsPlus, columns, rows, columns, dirty);
+                }
+            }
+
+            if (moveCellsRightLoop()) dirty = true;
+
+            return dirty;
+        }
+        /**
+       Looped move cells right.
+
+       */
+        private bool moveCellsRightLoop()
+        {
+            bool dirty = false;
+
+            for (int columns = 0; columns < BOARD_SIZE; columns++)
+            {
+                bool rowDirty = false;
+                do
+                {
+                    rowDirty = false;
+                    for (int rows = (BOARD_SIZE - 1); rows > 0; rows--)
+                    {
+                        int rowsPlus = rows - 1;
+                        bool cellDirty = moveCell(rowsPlus, columns, rows, columns);
+                        if (cellDirty)
+                        {
+                            rowDirty = true;
+                            dirty = true;
+                        }
+                    }
+                } while (rowDirty);
+            }
+
+            return dirty;
+        }
+
+        /**
+        Combine/merge cells with the same values
+        */
+        private bool combineCells(int x1, int y1, int x2, int y2,
+                bool dirty)
+        {
+            if (!gameBoard[x1, y1].isZeroValue())
+            {
+                int value = gameBoard[x1, y1].getValue();
+                if (gameBoard[x2, y2].getValue() == value)
+                {
+                    int newValue = value + value;
+                    gameBoard[x2, y2].setValue(newValue);
+                    gameBoard[x1, y1].setZeroValue();
+                    //updateScore(newValue, newValue);
+                    dirty = true;
+                }
+            }
+            return dirty;
+        }
+
+        /**
+        Move cell when there are empty cells (zero value cells).
+        */
+        private bool moveCell(int x1, int y1, int x2, int y2)
+        {
+            bool dirty = false;
+            if (!gameBoard[x1, y1].isZeroValue()
+                    && (gameBoard[x2, y2].isZeroValue()))
+            {
+                int value = gameBoard[x1, y1].getValue();
+                gameBoard[x2, y2].setValue(value);
+                gameBoard[x1, y1].setValue(0);
+                dirty = true;
+            }
+            return dirty;
         }
 
 
     }
+
 }
+
 

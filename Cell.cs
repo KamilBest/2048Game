@@ -26,14 +26,14 @@ namespace _2048
         /**
        Check whether fieldstate is empty
        */
-        protected bool isEmpty()
+        public bool isZeroValue()
         {
             if (value==0)
                 return true;
             return false;
         }
 
-        public void resetValue()
+        public void setZeroValue()
         {
             value = 0;
         }
