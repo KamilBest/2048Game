@@ -28,9 +28,8 @@ namespace _2048
        */
         public bool isZeroValue()
         {
-            if (value==0)
-                return true;
-            return false;
+            return (value == 0);
+              
         }
 
         public void setZeroValue()

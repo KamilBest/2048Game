@@ -109,10 +109,10 @@ namespace _2048
         }
         private void resetViewPanels()
         {
-            pressA.BackColor = Color.LightGray;
-            pressD.BackColor = Color.LightGray;
-            pressW.BackColor = Color.LightGray;
-            pressS.BackColor = Color.LightGray;
+            pressA.BackColor = Color.FromArgb(119,110,101);
+            pressD.BackColor = Color.FromArgb(119, 110, 101);
+            pressW.BackColor = Color.FromArgb(119, 110, 101);
+            pressS.BackColor = Color.FromArgb(119, 110, 101);
 
         }
         private void MainForm_KeyPress(object sender, KeyEventArgs e)
@@ -123,15 +123,16 @@ namespace _2048
                 {
                     resetViewPanels();
                     pressW.BackColor = Color.Orange;
-                    if (board.isGameOver())
+                    if (!board.isGameOver())
                     {
-                        //board.setArrowActive(false);
-                    }
-                    else {
+                        
                         board.addNewField();
+                        drawTable();
+
                     }
-                    drawTable();
                 }
+                else if (board.isGameOver())
+                    drawGameOver();
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
@@ -139,15 +140,16 @@ namespace _2048
                 {
                     resetViewPanels();
                     pressW.BackColor = Color.Orange;
-                    if (board.isGameOver())
+                    if (!board.isGameOver())
                     {
-                        //board.setArrowActive(false);
-                    }
-                    else {
+                        
                         board.addNewField();
+                        drawTable();
+
                     }
-                    drawTable();
                 }
+                else if (board.isGameOver())
+                    drawGameOver();
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
@@ -155,15 +157,16 @@ namespace _2048
                 {
                     resetViewPanels();
                     pressW.BackColor = Color.Orange;
-                    if (board.isGameOver())
+                    if (!board.isGameOver())
                     {
-                        //board.setArrowActive(false);
-                    }
-                    else {
+                    
                         board.addNewField();
+                        drawTable();
+
                     }
-                    drawTable();
                 }
+                else if (board.isGameOver())
+                    drawGameOver();
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
@@ -171,17 +174,24 @@ namespace _2048
                 {
                     resetViewPanels();
                     pressW.BackColor = Color.Orange;
-                    if (board.isGameOver())
+                    if (!board.isGameOver())
                     {
-                        //board.setArrowActive(false);
-                    }
-                    else {
+                   
                         board.addNewField();
+                        drawTable();
+
                     }
-                    drawTable();
                 }
+                else if (board.isGameOver())
+                    drawGameOver();
             }
             changeBackColors();
         }
+        private void drawGameOver()
+        {
+            gameOverPanel.Visible = true;
+        }
+
+ 
     }
 }
