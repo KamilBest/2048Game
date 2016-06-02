@@ -11,17 +11,18 @@ namespace _2048
         const int BOARD_SIZE = 4;
         public Cell[,] gameBoard;
         Random random = new Random();
-
+        Score score;
         public Board()
         {
 
             gameBoard = new Cell[BOARD_SIZE, BOARD_SIZE];
+             score = new Score();
             resetBoard();
         }
         /**
          Rest Board - clear board.
         */
-        private void resetBoard()
+        public void resetBoard()
         {
             for (int i = 0; i < BOARD_SIZE; i++)
             {
@@ -337,11 +338,15 @@ namespace _2048
                     int newValue = value + value;
                     gameBoard[x2, y2].setValue(newValue);
                     gameBoard[x1, y1].setZeroValue();
-                    //updateScore(newValue, newValue);
+                    score.updateScore(newValue);
                     dirty = true;
                 }
             }
             return dirty;
+        }
+        public Score getScore()
+        {
+            return score;
         }
 
         /**

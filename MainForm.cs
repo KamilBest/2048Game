@@ -13,12 +13,14 @@ namespace _2048
     public partial class MainForm : Form
     {
         Board board;
+        Score score;
         public MainForm()
         {
             InitializeComponent();
             board = new Board();
             drawTable();
             resetViewPanels();
+            score = new Score();
         }
         public void drawTable()
         {
@@ -56,50 +58,59 @@ namespace _2048
                     switch (fieldValue)
                     {
                         case 0:
-                            c.BackColor = ColorTranslator.FromHtml("#eee4da");
+                            c.BackColor = ColorTranslator.FromHtml("#ccc0b3");
                             break;
                         case 2:
                             c.BackColor = ColorTranslator.FromHtml("#eee4da");
-
+                            c.ForeColor = ColorTranslator.FromHtml("#776e65");
                             break;
                         case 4:
                             c.BackColor = ColorTranslator.FromHtml("#ede0c8");
+                            c.ForeColor = ColorTranslator.FromHtml("#776e65");
 
                             break;
                         case 8:
                             c.BackColor = ColorTranslator.FromHtml("#f2b179");
-
+                            c.ForeColor = Color.White;
                             break;
                         case 16:
                             c.BackColor = ColorTranslator.FromHtml("#f59563");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 32:
                             c.BackColor = ColorTranslator.FromHtml("#f67c5f");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 64:
                             c.BackColor = ColorTranslator.FromHtml("#f65e3b");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 128:
                             c.BackColor = ColorTranslator.FromHtml("#edcf72");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 256:
-                            c.BackColor = ColorTranslator.FromHtml("#5c5c5c");
+                            c.BackColor = ColorTranslator.FromHtml("#f6cb5a");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 512:
-                            c.BackColor = ColorTranslator.FromHtml("#474747");
+                            c.BackColor = ColorTranslator.FromHtml("#f7c74b");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 1024:
-                            c.BackColor = ColorTranslator.FromHtml("#333333");
+                            c.BackColor = ColorTranslator.FromHtml("#f8c440");
+                            c.ForeColor = Color.White;
 
                             break;
                         case 2048:
-                            c.BackColor = ColorTranslator.FromHtml("#141414");
+                            c.BackColor = ColorTranslator.FromHtml("#eec22e");
+                            c.ForeColor = Color.White;
 
                             break;
                     }
@@ -122,7 +133,7 @@ namespace _2048
                 if (board.moveCellsLeft())
                 {
                     resetViewPanels();
-                    pressW.BackColor = Color.Orange;
+                    pressA.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
                         
@@ -139,7 +150,7 @@ namespace _2048
                 if (board.moveCellsRight())
                 {
                     resetViewPanels();
-                    pressW.BackColor = Color.Orange;
+                    pressD.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
                         
@@ -173,7 +184,7 @@ namespace _2048
                 if (board.moveCellsDown())
                 {
                     resetViewPanels();
-                    pressW.BackColor = Color.Orange;
+                    pressS.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
                    
@@ -185,13 +196,58 @@ namespace _2048
                 else if (board.isGameOver())
                     drawGameOver();
             }
+            score = board.getScore();
+            score.drawScore(scoreLabel);
             changeBackColors();
         }
         private void drawGameOver()
         {
             gameOverPanel.Visible = true;
+            gameOverPanel.Enabled = true;
+
         }
 
- 
+        private void PlayAgain_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Do You want to reset the game?", "Reset Game", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                score.resetScore();
+                score.drawScore(scoreLabel);
+
+                board.resetBoard();
+                changeBackColors();
+                drawTable();
+            }
+                    
+        }
+
+        
+
+        private void changeToOrange(object sender, EventArgs e)
+        {
+            resetGameButton.BackColor = Color.Orange;
+
+        }
+
+        private void changeToGray(object sender, EventArgs e)
+        {
+            resetGameButton.BackColor = Color.FromArgb(119, 110, 101);
+
+        }
+
+        private void PlayAgain_Click_1(object sender, EventArgs e)
+        {
+            gameOverPanel.Visible = false;
+            gameOverPanel.Enabled = false;
+
+
+            score.resetScore();
+            score.drawScore(scoreLabel);
+
+            board.resetBoard();
+            changeBackColors();
+            drawTable();
+        }
     }
 }
