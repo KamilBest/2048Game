@@ -21,6 +21,8 @@ namespace _2048
             drawTable();
             resetViewPanels();
             score = new Score();
+            score.drawBestScore(bestScoreLabel);
+
         }
         public void drawTable()
         {
@@ -36,6 +38,8 @@ namespace _2048
 
                 }
             }
+            changeBackColors();
+
 
         }
 
@@ -143,7 +147,7 @@ namespace _2048
                     }
                 }
                 else if (board.isGameOver())
-                    drawGameOver();
+                    gameOver();
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
@@ -160,7 +164,7 @@ namespace _2048
                     }
                 }
                 else if (board.isGameOver())
-                    drawGameOver();
+                    gameOver();
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
@@ -177,7 +181,7 @@ namespace _2048
                     }
                 }
                 else if (board.isGameOver())
-                    drawGameOver();
+                    gameOver();
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
@@ -194,17 +198,35 @@ namespace _2048
                     }
                 }
                 else if (board.isGameOver())
-                    drawGameOver();
+                    gameOver();
             }
-            score = board.getScore();
+            score.updateScore(board.getScoreValue());
             score.drawScore(scoreLabel);
-            changeBackColors();
+            score.drawBestScore(bestScoreLabel);
+
+            if (score.isScoreTheBest())
+            {
+                score.drawScore(bestScoreLabel);
+            }
+
+           
+
         }
         private void drawGameOver()
         {
             gameOverPanel.Visible = true;
             gameOverPanel.Enabled = true;
 
+        }
+        private void gameOver()
+        {
+            drawGameOver();
+            if(score.isScoreTheBest())
+            {
+                score.updateBestScore();
+
+                score.writeBestScore();
+            }
         }
 
         private void PlayAgain_Click(object sender, EventArgs e)
@@ -214,10 +236,10 @@ namespace _2048
             {
                 score.resetScore();
                 score.drawScore(scoreLabel);
+                score.drawBestScore(bestScoreLabel);
 
                 board.resetBoard();
-                changeBackColors();
-                drawTable();
+           drawTable();
             }
                     
         }
@@ -246,8 +268,12 @@ namespace _2048
             score.drawScore(scoreLabel);
 
             board.resetBoard();
-            changeBackColors();
             drawTable();
+        }
+
+        private void backToMenuButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

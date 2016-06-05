@@ -54,7 +54,7 @@ namespace _2048
         {
             return value;
         }
-        
+
         /**
         Double value
             */

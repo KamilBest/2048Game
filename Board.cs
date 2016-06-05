@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace _2048
 {
-    class Board : Cell
+    class Board
     {
         const int BOARD_SIZE = 4;
         public Cell[,] gameBoard;
         Random random = new Random();
-        Score score;
+        int cellAddValue=0;
         public Board()
         {
 
             gameBoard = new Cell[BOARD_SIZE, BOARD_SIZE];
-             score = new Score();
             resetBoard();
         }
         /**
@@ -24,6 +23,7 @@ namespace _2048
         */
         public void resetBoard()
         {
+            cellAddValue = 0;
             for (int i = 0; i < BOARD_SIZE; i++)
             {
                 for (int j = 0; j < BOARD_SIZE; j++)
@@ -338,15 +338,16 @@ namespace _2048
                     int newValue = value + value;
                     gameBoard[x2, y2].setValue(newValue);
                     gameBoard[x1, y1].setZeroValue();
-                    score.updateScore(newValue);
+                    cellAddValue += newValue;
                     dirty = true;
                 }
             }
             return dirty;
         }
-        public Score getScore()
+       
+        public int getScoreValue()
         {
-            return score;
+            return cellAddValue;
         }
 
         /**

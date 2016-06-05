@@ -54,7 +54,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.resetGameButton = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.bestScoreLabel = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,7 +73,6 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -428,22 +427,22 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
-            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.bestScoreLabel);
             this.panel4.Location = new System.Drawing.Point(147, 38);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(95, 53);
             this.panel4.TabIndex = 3;
             // 
-            // label4
+            // bestScoreLabel
             // 
-            this.label4.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 53);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "0";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bestScoreLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bestScoreLabel.ForeColor = System.Drawing.Color.White;
+            this.bestScoreLabel.Location = new System.Drawing.Point(0, 0);
+            this.bestScoreLabel.Name = "bestScoreLabel";
+            this.bestScoreLabel.Size = new System.Drawing.Size(95, 53);
+            this.bestScoreLabel.TabIndex = 0;
+            this.bestScoreLabel.Text = "0";
+            this.bestScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
@@ -509,6 +508,7 @@
             this.backToMenuButton.TabIndex = 9;
             this.backToMenuButton.Text = "Back to Menu";
             this.backToMenuButton.UseVisualStyleBackColor = true;
+            this.backToMenuButton.Click += new System.EventHandler(this.backToMenuButton_Click);
             // 
             // PlayAgain
             // 
@@ -539,13 +539,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
-            this.ClientSize = new System.Drawing.Size(828, 707);
+            this.ClientSize = new System.Drawing.Size(705, 707);
             this.Controls.Add(this.gameOverPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "2048";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyPress);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -570,7 +572,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label scoreLabel;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label bestScoreLabel;
         private System.Windows.Forms.Label pressW;
         private System.Windows.Forms.Label pressS;
         private System.Windows.Forms.Label pressA;
