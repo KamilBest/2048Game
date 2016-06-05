@@ -8,3 +8,4 @@ c:\users\admin\documents\visual studio 2015\Projects\2048\2048\obj\Debug\2048.ex
 c:\users\admin\documents\visual studio 2015\Projects\2048\2048\obj\Debug\2048.pdb
 c:\users\admin\documents\visual studio 2015\Projects\2048\2048\obj\Debug\_2048.MainForm.resources
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\2048\2048\obj\Debug\_2048.Menu.resources
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\2048\2048\obj\Debug\_2048.About.resources

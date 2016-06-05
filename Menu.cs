@@ -36,6 +36,10 @@ namespace _2048
             Application.Exit();
         }
 
-        
+        private void about_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
     }
 }

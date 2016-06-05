@@ -113,6 +113,7 @@
             this.about.TabIndex = 23;
             this.about.Text = "About";
             this.about.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.about.Click += new System.EventHandler(this.about_Click);
             // 
             // exit
             // 
