@@ -9,7 +9,6 @@ namespace _2048
     /**
     Single cell class
         Fields: value, fieldState
-        Methods: getFieldState,setEmpty,setNotEmpty,setFirstValue, doubleValue,get Value, isEmpty
     */
     public class Cell
     {
@@ -32,24 +31,33 @@ namespace _2048
               
         }
 
+        /**
+        Set zero value to cell (reset cell).
+        */
         public void setZeroValue()
         {
             value = 0;
         }
+
         /**
-     Set beginning value
-         */
+         Set beginning value
+        */
         public void setFirstValue()
         {
             value = 2;
         }
+
+        /**
+        Set givenValue to current cell.
+        */
         public void setValue(int givenValue)
         {
             value = givenValue;
         }
+
         /**
-      Get Value
-          */
+        Get Value
+        */
         public int getValue()
         {
             return value;
@@ -57,7 +65,7 @@ namespace _2048
 
         /**
         Double value
-            */
+        */
         public void doubleValue()
         {
             value *= 2;

@@ -16,6 +16,9 @@ namespace _2048
         {
             InitializeComponent();
         }
+        /**
+        Play button. Creates mainForm which specified argument. Load/reset best score.
+        */
         private void play_Click_1(object sender, EventArgs e)
         {
             this.Hide();
@@ -31,11 +34,17 @@ namespace _2048
             }
         }
 
+        /**
+        Exit application
+        */
         private void exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /**
+        Run about.
+        */
         private void about_Click(object sender, EventArgs e)
         {
             About about = new About();

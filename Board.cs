@@ -12,14 +12,17 @@ namespace _2048
         public Cell[,] gameBoard;
         Random random = new Random();
         int cellAddValue=0;
+
+        /**
+        Prepare board on create.
+        */
         public Board()
         {
             gameBoard = new Cell[BOARD_SIZE, BOARD_SIZE];
-            resetBoard();
-           
+            resetBoard();      
         }
         /**
-         Rest Board - clear board.
+         Reset Board - clear board.
         */
         public void resetBoard()
         {
@@ -32,8 +35,7 @@ namespace _2048
                 }
             }
             addNewField();
-            addNewField();
-          
+            addNewField();        
         }
 
         /**
@@ -56,6 +58,10 @@ namespace _2048
                 }
             }
         }
+
+        /**
+        Take Biggest tile from board and returns it.
+        */
         public int takeBiggestTile()
         {
             int max = gameBoard[0, 0].getValue();
@@ -72,17 +78,11 @@ namespace _2048
 
         /**
         Check whether game is over. 
-            If grid is full and we can't do any move.
-    */
+        Game over - If grid is full and we can't do any move.
+        */
         public bool isGameOver()
         {
             return isGridFull() && !isMovePossible();
-        }
-        public bool is2048()
-        {
-            if (takeBiggestTile() == 2048)
-                return true;
-            return false;
         }
 
         /**
@@ -105,7 +105,7 @@ namespace _2048
 
         /**
         Check whether move is possible.
-            First loops for checking right and left move, second for up and down move.
+        First loops for checking right and left move, second for up and down move.
         */
         private bool isMovePossible()
         {
@@ -120,7 +120,6 @@ namespace _2048
                     }
                 }
             }
-
             for (int columns = 0; columns < BOARD_SIZE; columns++)
             {
                 for (int rows = 0; rows < (BOARD_SIZE - 1); rows++)
@@ -132,7 +131,6 @@ namespace _2048
                     }
                 }
             }
-
             return false;
         }
 
@@ -141,53 +139,50 @@ namespace _2048
         */
         public bool moveCellsUp()
         {
-            bool dirty = false;
+            bool occupied = false;
 
             if (moveCellsUpLoop())
-                dirty = true;
+                occupied = true;
 
             for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
                 for (int columns = 0; columns < (BOARD_SIZE - 1); columns++)
                 {
                     int columnsPlus = columns + 1;
-                    dirty = combineCells(rows, columnsPlus, rows, columns, dirty);
+                    occupied = combineCells(rows, columnsPlus, rows, columns, occupied);
                 }
             }
-
             if (moveCellsUpLoop())
-                dirty = true;
+                occupied = true;
 
-            return dirty;
+            return occupied;
         }
+
         /**
         Looped move cells up.
-
         */
         private bool moveCellsUpLoop()
         {
-            bool dirty = false;
-
+            bool occupied = false;
             for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                bool columnDirty = false;
+                bool columnOccupied = false;
                 do
                 {
-                    columnDirty = false;
+                    columnOccupied = false;
                     for (int columns = 0; columns < (BOARD_SIZE - 1); columns++)
                     {
                         int columnsPlus = columns + 1;
-                        bool cellDirty = moveCell(rows, columnsPlus, rows, columns);
-                        if (cellDirty)
+                        bool cellOccupied = moveCell(rows, columnsPlus, rows, columns);
+                        if (cellOccupied)
                         {
-                            columnDirty = true;
-                            dirty = true;
+                            columnOccupied = true;
+                            occupied = true;
                         }
                     }
-                } while (columnDirty);
+                } while (columnOccupied);
             }
-
-            return dirty;
+            return occupied;
         }
 
         /**
@@ -195,160 +190,144 @@ namespace _2048
         */
         public bool moveCellsDown()
         {
-            bool dirty = false;
-
-            if (moveCellsDownLoop()) dirty = true;
-
+            bool occupied = false;
+            if (moveCellsDownLoop()) occupied = true;
             for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
                 for (int columns = BOARD_SIZE - 1; columns > 0; columns--)
                 {
                     int columnsPlus = columns - 1;
-                    dirty = combineCells(rows, columnsPlus, rows, columns, dirty);
+                    occupied = combineCells(rows, columnsPlus, rows, columns, occupied);
                 }
             }
-
-            if (moveCellsDownLoop()) dirty = true;
-
-            return dirty;
+            if (moveCellsDownLoop()) occupied = true;
+            return occupied;
         }
+
         /**
        Looped move cells down.
-
        */
         private bool moveCellsDownLoop()
         {
-            bool dirty = false;
-
+            bool occupied = false;
             for (int rows = 0; rows < BOARD_SIZE; rows++)
             {
-                bool columnDirty = false;
+                bool columnOccupied = false;
                 do
                 {
-                    columnDirty = false;
+                    columnOccupied = false;
                     for (int columns = BOARD_SIZE - 1; columns > 0; columns--)
                     {
                         int columnsPlus = columns - 1;
-                        bool cellDirty = moveCell(rows, columnsPlus, rows, columns);
-                        if (cellDirty)
+                        bool cellOccupied = moveCell(rows, columnsPlus, rows, columns);
+                        if (cellOccupied)
                         {
-                            columnDirty = true;
-                            dirty = true;
+                            columnOccupied = true;
+                            occupied = true;
                         }
                     }
-                } while (columnDirty);
+                } while (columnOccupied);
             }
-
-            return dirty;
+            return occupied;
         }
+
         /**
         Move cells left.
         */
         public bool moveCellsLeft()
         {
-            bool dirty = false;
-
-            if (moveCellsLeftLoop()) dirty = true;
-
+            bool occupied = false;
+            if (moveCellsLeftLoop()) occupied = true;
             for (int columns = 0; columns < BOARD_SIZE; columns++)
             {
                 for (int rows = 0; rows < (BOARD_SIZE - 1); rows++)
                 {
                     int rowsPlus = rows + 1;
-                    dirty = combineCells(rowsPlus, columns, rows, columns, dirty);
+                    occupied = combineCells(rowsPlus, columns, rows, columns, occupied);
                 }
             }
-
-            if (moveCellsLeftLoop()) dirty = true;
-
-            return dirty;
+            if (moveCellsLeftLoop()) occupied = true;
+            return occupied;
         }
+
         /**
        Looped move cells left.
-
        */
         private bool moveCellsLeftLoop()
         {
-            bool dirty = false;
-
+            bool occupied = false;
             for (int columns = 0; columns < BOARD_SIZE; columns++)
             {
-                bool rowDirty = false;
+                bool rowOccupied = false;
                 do
                 {
-                    rowDirty = false;
+                    rowOccupied = false;
                     for (int rows = 0; rows < (BOARD_SIZE - 1); rows++)
                     {
                         int rowsPlus = rows + 1;
-                        bool cellDirty = moveCell(rowsPlus, columns, rows, columns);
-                        if (cellDirty)
+                        bool cellOccupied = moveCell(rowsPlus, columns, rows, columns);
+                        if (cellOccupied)
                         {
-                            rowDirty = true;
-                            dirty = true;
+                            rowOccupied = true;
+                            occupied = true;
                         }
                     }
-                } while (rowDirty);
+                } while (rowOccupied);
             }
-
-            return dirty;
+            return occupied;
         }
+
         /**
         Move cells right.
         */
         public bool moveCellsRight()
         {
-            bool dirty = false;
-
-            if (moveCellsRightLoop()) dirty = true;
-
+            bool occupied = false;
+            if (moveCellsRightLoop()) occupied = true;
             for (int columns = 0; columns < BOARD_SIZE; columns++)
             {
                 for (int rows = (BOARD_SIZE - 1); rows > 0; rows--)
                 {
                     int rowsPlus = rows - 1;
-                    dirty = combineCells(rowsPlus, columns, rows, columns, dirty);
+                    occupied = combineCells(rowsPlus, columns, rows, columns, occupied);
                 }
             }
-
-            if (moveCellsRightLoop()) dirty = true;
-
-            return dirty;
+            if (moveCellsRightLoop()) occupied = true;
+            return occupied;
         }
+
         /**
        Looped move cells right.
-
        */
         private bool moveCellsRightLoop()
         {
-            bool dirty = false;
-
+            bool occupied = false;
             for (int columns = 0; columns < BOARD_SIZE; columns++)
             {
-                bool rowDirty = false;
+                bool rowOccupied = false;
                 do
                 {
-                    rowDirty = false;
+                    rowOccupied = false;
                     for (int rows = (BOARD_SIZE - 1); rows > 0; rows--)
                     {
                         int rowsPlus = rows - 1;
-                        bool cellDirty = moveCell(rowsPlus, columns, rows, columns);
-                        if (cellDirty)
+                        bool cellOccupied = moveCell(rowsPlus, columns, rows, columns);
+                        if (cellOccupied)
                         {
-                            rowDirty = true;
-                            dirty = true;
+                            rowOccupied = true;
+                            occupied = true;
                         }
                     }
-                } while (rowDirty);
+                } while (rowOccupied);
             }
-
-            return dirty;
+            return occupied;
         }
 
         /**
         Combine/merge cells with the same values
         */
         private bool combineCells(int x1, int y1, int x2, int y2,
-                bool dirty)
+                bool occupied)
         {
             if (!gameBoard[x1, y1].isZeroValue())
             {
@@ -359,12 +338,15 @@ namespace _2048
                     gameBoard[x2, y2].setValue(newValue);
                     gameBoard[x1, y1].setZeroValue();
                     cellAddValue += newValue;
-                    dirty = true;
+                    occupied = true;
                 }
             }
-            return dirty;
+            return occupied;
         }
        
+        /**
+        Get value of current score (after slide).
+        */
         public int getScoreValue()
         {
             return cellAddValue;
@@ -375,22 +357,17 @@ namespace _2048
         */
         private bool moveCell(int x1, int y1, int x2, int y2)
         {
-            bool dirty = false;
+            bool occupied = false;
             if (!gameBoard[x1, y1].isZeroValue()
                     && (gameBoard[x2, y2].isZeroValue()))
             {
                 int value = gameBoard[x1, y1].getValue();
                 gameBoard[x2, y2].setValue(value);
                 gameBoard[x1, y1].setValue(0);
-                dirty = true;
+                occupied = true;
             }
-            return dirty;
+            return occupied;
         }
-
-
-
-       
-
     }
 
 }
