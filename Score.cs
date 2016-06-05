@@ -14,7 +14,6 @@ namespace _2048
         int bestScore = 0;
         public Score()
         {
-            // writeBestScore();
             readBestScore();
             resetScore();
         }
@@ -62,6 +61,10 @@ namespace _2048
         public void resetScore()
         {
             score = 0;
+        }
+        public void resetBestScore()
+        {
+            bestScore = 0;
         }
         public void updateScore(int value)
         {

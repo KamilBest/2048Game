@@ -52,6 +52,8 @@
             this.pressA = new System.Windows.Forms.Label();
             this.pressW = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tile = new System.Windows.Forms.Label();
             this.resetGameButton = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.bestScoreLabel = new System.Windows.Forms.Label();
@@ -63,12 +65,18 @@
             this.backToMenuButton = new System.Windows.Forms.Button();
             this.PlayAgain = new System.Windows.Forms.Button();
             this.gameOverLabel = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.menu = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.congratulations = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gameOverPanel.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -113,7 +121,7 @@
             // label19
             // 
             this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label19.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label19.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label19.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label19.Location = new System.Drawing.Point(325, 325);
@@ -127,7 +135,7 @@
             // label18
             // 
             this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label18.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label18.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label18.Location = new System.Drawing.Point(220, 325);
@@ -141,7 +149,7 @@
             // label17
             // 
             this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label17.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label17.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label17.Location = new System.Drawing.Point(115, 325);
@@ -155,7 +163,7 @@
             // label16
             // 
             this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label16.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label16.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label16.Location = new System.Drawing.Point(10, 325);
@@ -169,7 +177,7 @@
             // label15
             // 
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label15.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label15.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label15.Location = new System.Drawing.Point(325, 220);
@@ -183,7 +191,7 @@
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label14.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label14.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label14.Location = new System.Drawing.Point(220, 220);
@@ -197,7 +205,7 @@
             // label13
             // 
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label13.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label13.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label13.Location = new System.Drawing.Point(115, 220);
@@ -211,7 +219,7 @@
             // label12
             // 
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label12.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label12.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label12.Location = new System.Drawing.Point(10, 220);
@@ -225,7 +233,7 @@
             // label11
             // 
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label11.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label11.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label11.Location = new System.Drawing.Point(325, 115);
@@ -239,7 +247,7 @@
             // label10
             // 
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label10.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label10.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label10.Location = new System.Drawing.Point(220, 115);
@@ -253,7 +261,7 @@
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label9.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label9.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label9.Location = new System.Drawing.Point(115, 115);
@@ -267,7 +275,7 @@
             // label8
             // 
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label8.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label8.Location = new System.Drawing.Point(10, 115);
@@ -281,7 +289,7 @@
             // label7
             // 
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label7.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label7.Location = new System.Drawing.Point(325, 10);
@@ -295,7 +303,7 @@
             // label6
             // 
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label6.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label6.Location = new System.Drawing.Point(220, 10);
@@ -309,7 +317,7 @@
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label5.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label5.Location = new System.Drawing.Point(115, 10);
@@ -323,7 +331,7 @@
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label3.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
             this.label3.Location = new System.Drawing.Point(10, 10);
@@ -398,6 +406,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.panel2.Controls.Add(this.label22);
+            this.panel2.Controls.Add(this.tile);
             this.panel2.Controls.Add(this.resetGameButton);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel3);
@@ -407,6 +417,31 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(260, 143);
             this.panel2.TabIndex = 6;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Verdana", 6.5F);
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(4, 105);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(69, 12);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "Biggest Tile:";
+            // 
+            // tile
+            // 
+            this.tile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(192)))), ((int)(((byte)(179)))));
+            this.tile.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.tile.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
+            this.tile.Location = new System.Drawing.Point(81, 87);
+            this.tile.Margin = new System.Windows.Forms.Padding(5);
+            this.tile.Name = "tile";
+            this.tile.Size = new System.Drawing.Size(47, 47);
+            this.tile.TabIndex = 21;
+            this.tile.Text = " ";
+            this.tile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // resetGameButton
             // 
@@ -430,14 +465,14 @@
             this.panel4.Controls.Add(this.bestScoreLabel);
             this.panel4.Location = new System.Drawing.Point(147, 38);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(95, 53);
+            this.panel4.Size = new System.Drawing.Size(95, 42);
             this.panel4.TabIndex = 3;
             // 
             // bestScoreLabel
             // 
             this.bestScoreLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bestScoreLabel.ForeColor = System.Drawing.Color.White;
-            this.bestScoreLabel.Location = new System.Drawing.Point(0, 0);
+            this.bestScoreLabel.Location = new System.Drawing.Point(0, -5);
             this.bestScoreLabel.Name = "bestScoreLabel";
             this.bestScoreLabel.Size = new System.Drawing.Size(95, 53);
             this.bestScoreLabel.TabIndex = 0;
@@ -450,7 +485,7 @@
             this.panel3.Controls.Add(this.scoreLabel);
             this.panel3.Location = new System.Drawing.Point(21, 38);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(95, 53);
+            this.panel3.Size = new System.Drawing.Size(95, 42);
             this.panel3.TabIndex = 2;
             // 
             // scoreLabel
@@ -459,7 +494,7 @@
             this.scoreLabel.ForeColor = System.Drawing.Color.White;
             this.scoreLabel.Location = new System.Drawing.Point(0, 0);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(95, 53);
+            this.scoreLabel.Size = new System.Drawing.Size(95, 42);
             this.scoreLabel.TabIndex = 0;
             this.scoreLabel.Text = "0";
             this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -490,13 +525,14 @@
             // 
             this.gameOverPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.gameOverPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gameOverPanel.BackgroundImage")));
+            this.gameOverPanel.Controls.Add(this.congratulations);
             this.gameOverPanel.Controls.Add(this.backToMenuButton);
             this.gameOverPanel.Controls.Add(this.PlayAgain);
             this.gameOverPanel.Controls.Add(this.gameOverLabel);
             this.gameOverPanel.Location = new System.Drawing.Point(135, 323);
             this.gameOverPanel.Name = "gameOverPanel";
             this.gameOverPanel.Size = new System.Drawing.Size(429, 179);
-            this.gameOverPanel.TabIndex = 9;
+            this.gameOverPanel.TabIndex = 11;
             this.gameOverPanel.Visible = false;
             // 
             // backToMenuButton
@@ -508,7 +544,7 @@
             this.backToMenuButton.TabIndex = 9;
             this.backToMenuButton.Text = "Back to Menu";
             this.backToMenuButton.UseVisualStyleBackColor = true;
-            this.backToMenuButton.Click += new System.EventHandler(this.backToMenuButton_Click);
+            this.backToMenuButton.Click += new System.EventHandler(this.backToMenuButton_Click_1);
             // 
             // PlayAgain
             // 
@@ -519,7 +555,7 @@
             this.PlayAgain.TabIndex = 8;
             this.PlayAgain.Text = "Play Again";
             this.PlayAgain.UseVisualStyleBackColor = true;
-            this.PlayAgain.Click += new System.EventHandler(this.PlayAgain_Click_1);
+            this.PlayAgain.Click += new System.EventHandler(this.PlayAgain_Click_2);
             // 
             // gameOverLabel
             // 
@@ -527,12 +563,74 @@
             this.gameOverLabel.BackColor = System.Drawing.Color.Transparent;
             this.gameOverLabel.Font = new System.Drawing.Font("Verdana", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.gameOverLabel.ForeColor = System.Drawing.Color.White;
-            this.gameOverLabel.Location = new System.Drawing.Point(81, 24);
+            this.gameOverLabel.Location = new System.Drawing.Point(81, 9);
             this.gameOverLabel.Name = "gameOverLabel";
             this.gameOverLabel.Size = new System.Drawing.Size(265, 45);
             this.gameOverLabel.TabIndex = 0;
             this.gameOverLabel.Text = "GAME OVER";
             this.gameOverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.panel5.Controls.Add(this.menu);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.label20);
+            this.panel5.Location = new System.Drawing.Point(135, 647);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(429, 48);
+            this.panel5.TabIndex = 7;
+            // 
+            // menu
+            // 
+            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
+            this.menu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.menu.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.menu.ForeColor = System.Drawing.Color.White;
+            this.menu.Location = new System.Drawing.Point(291, 10);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(129, 29);
+            this.menu.TabIndex = 4;
+            this.menu.Text = "Back to menu";
+            this.menu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.menu.Click += new System.EventHandler(this.menu_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(32, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Created by Kamil Best";
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(101)))));
+            this.label20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label20.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(147, 124);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(95, 37);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Reset Game";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // congratulations
+            // 
+            this.congratulations.AutoSize = true;
+            this.congratulations.BackColor = System.Drawing.Color.Transparent;
+            this.congratulations.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.congratulations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.congratulations.Location = new System.Drawing.Point(52, 54);
+            this.congratulations.Name = "congratulations";
+            this.congratulations.Size = new System.Drawing.Size(307, 25);
+            this.congratulations.TabIndex = 10;
+            this.congratulations.Text = "Congratulations You won";
+            this.congratulations.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.congratulations.Visible = false;
             // 
             // MainForm
             // 
@@ -540,6 +638,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(13)))), ((int)(((byte)(13)))));
             this.ClientSize = new System.Drawing.Size(705, 707);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.gameOverPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -548,7 +647,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "2048";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyPress);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -558,6 +656,8 @@
             this.panel3.ResumeLayout(false);
             this.gameOverPanel.ResumeLayout(false);
             this.gameOverPanel.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -598,6 +698,13 @@
         private System.Windows.Forms.Button backToMenuButton;
         private System.Windows.Forms.Button PlayAgain;
         private System.Windows.Forms.Label gameOverLabel;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label menu;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label tile;
+        private System.Windows.Forms.Label congratulations;
     }
 }
 

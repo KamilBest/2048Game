@@ -14,9 +14,9 @@ namespace _2048
         int cellAddValue=0;
         public Board()
         {
-
             gameBoard = new Cell[BOARD_SIZE, BOARD_SIZE];
             resetBoard();
+           
         }
         /**
          Rest Board - clear board.
@@ -33,6 +33,7 @@ namespace _2048
             }
             addNewField();
             addNewField();
+          
         }
 
         /**
@@ -55,6 +56,19 @@ namespace _2048
                 }
             }
         }
+        public int takeBiggestTile()
+        {
+            int max = gameBoard[0, 0].getValue();
+            for(int i=0;i<BOARD_SIZE;i++)
+            {
+                for(int j=0;j<BOARD_SIZE;j++)
+                {
+                    if (gameBoard[i, j].getValue() > max)
+                        max = gameBoard[i, j].getValue();
+                }
+            }
+            return max;
+        }
 
         /**
         Check whether game is over. 
@@ -63,6 +77,12 @@ namespace _2048
         public bool isGameOver()
         {
             return isGridFull() && !isMovePossible();
+        }
+        public bool is2048()
+        {
+            if (takeBiggestTile() == 2048)
+                return true;
+            return false;
         }
 
         /**

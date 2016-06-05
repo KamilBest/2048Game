@@ -14,17 +14,26 @@ namespace _2048
     {
         Board board;
         Score score;
-        public MainForm()
+        int biggestValue;
+        public MainForm(bool option)
         {
             InitializeComponent();
             board = new Board();
-            drawTable();
+            drawBoard();
             resetViewPanels();
             score = new Score();
+            if (!option)
+                score.resetBestScore();
             score.drawBestScore(bestScoreLabel);
 
         }
-        public void drawTable()
+        private void drawBiggestTile()
+        {
+            biggestValue = board.takeBiggestTile();
+            tile.Text = biggestValue.ToString();
+            changeColors(tile, board.takeBiggestTile());
+        }
+        private void drawBoard()
         {
             for (int i = 0; i <= this.tableLayoutPanel1.ColumnCount - 1; i++)
             {
@@ -38,7 +47,8 @@ namespace _2048
 
                 }
             }
-            changeBackColors();
+            drawBiggestTile();
+            changeCellsBackColor();
 
 
         }
@@ -49,8 +59,69 @@ namespace _2048
 
         }
 
+        private void changeColors(Control control,int value)
+        {
+            switch (value)
+            {
+                case 0:
+                    control.BackColor = ColorTranslator.FromHtml("#ccc0b3");
+                    break;
+                case 2:
+                    control.BackColor = ColorTranslator.FromHtml("#eee4da");
+                    control.ForeColor = ColorTranslator.FromHtml("#776e65");
+                    break;
+                case 4:
+                    control.BackColor = ColorTranslator.FromHtml("#ede0c8");
+                    control.ForeColor = ColorTranslator.FromHtml("#776e65");
 
-        private void changeBackColors()
+                    break;
+                case 8:
+                    control.BackColor = ColorTranslator.FromHtml("#f2b179");
+                    control.ForeColor = Color.White;
+                    break;
+                case 16:
+                    control.BackColor = ColorTranslator.FromHtml("#f59563");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 32:
+                    control.BackColor = ColorTranslator.FromHtml("#f67c5f");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 64:
+                    control.BackColor = ColorTranslator.FromHtml("#f65e3b");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 128:
+                    control.BackColor = ColorTranslator.FromHtml("#edcf72");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 256:
+                    control.BackColor = ColorTranslator.FromHtml("#f6cb5a");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 512:
+                    control.BackColor = ColorTranslator.FromHtml("#f7c74b");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 1024:
+                    control.BackColor = ColorTranslator.FromHtml("#f8c440");
+                    control.ForeColor = Color.White;
+
+                    break;
+                case 2048:
+                    control.BackColor = ColorTranslator.FromHtml("#eec22e");
+                    control.ForeColor = Color.White;
+
+                    break;
+            }
+        }
+        private void changeCellsBackColor()
         {
             int fieldValue = 0;
             for (int i = 0; i <= this.tableLayoutPanel1.ColumnCount - 1; i++)
@@ -59,72 +130,14 @@ namespace _2048
                 {
                     fieldValue = board.gameBoard[i, j].getValue();
                     Control c = this.tableLayoutPanel1.GetControlFromPosition(i, j);
-                    switch (fieldValue)
-                    {
-                        case 0:
-                            c.BackColor = ColorTranslator.FromHtml("#ccc0b3");
-                            break;
-                        case 2:
-                            c.BackColor = ColorTranslator.FromHtml("#eee4da");
-                            c.ForeColor = ColorTranslator.FromHtml("#776e65");
-                            break;
-                        case 4:
-                            c.BackColor = ColorTranslator.FromHtml("#ede0c8");
-                            c.ForeColor = ColorTranslator.FromHtml("#776e65");
-
-                            break;
-                        case 8:
-                            c.BackColor = ColorTranslator.FromHtml("#f2b179");
-                            c.ForeColor = Color.White;
-                            break;
-                        case 16:
-                            c.BackColor = ColorTranslator.FromHtml("#f59563");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 32:
-                            c.BackColor = ColorTranslator.FromHtml("#f67c5f");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 64:
-                            c.BackColor = ColorTranslator.FromHtml("#f65e3b");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 128:
-                            c.BackColor = ColorTranslator.FromHtml("#edcf72");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 256:
-                            c.BackColor = ColorTranslator.FromHtml("#f6cb5a");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 512:
-                            c.BackColor = ColorTranslator.FromHtml("#f7c74b");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 1024:
-                            c.BackColor = ColorTranslator.FromHtml("#f8c440");
-                            c.ForeColor = Color.White;
-
-                            break;
-                        case 2048:
-                            c.BackColor = ColorTranslator.FromHtml("#eec22e");
-                            c.ForeColor = Color.White;
-
-                            break;
-                    }
+                    changeColors(c, fieldValue);
 
                 }
             }
         }
         private void resetViewPanels()
         {
-            pressA.BackColor = Color.FromArgb(119,110,101);
+            pressA.BackColor = Color.FromArgb(119, 110, 101);
             pressD.BackColor = Color.FromArgb(119, 110, 101);
             pressW.BackColor = Color.FromArgb(119, 110, 101);
             pressS.BackColor = Color.FromArgb(119, 110, 101);
@@ -140,14 +153,17 @@ namespace _2048
                     pressA.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
-                        
+
                         board.addNewField();
-                        drawTable();
+                        drawBoard();
 
                     }
                 }
                 else if (board.isGameOver())
                     gameOver();
+                
+              
+
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
@@ -157,14 +173,16 @@ namespace _2048
                     pressD.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
-                        
+
                         board.addNewField();
-                        drawTable();
+                        drawBoard();
 
                     }
                 }
                 else if (board.isGameOver())
                     gameOver();
+
+              
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
@@ -174,14 +192,16 @@ namespace _2048
                     pressW.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
-                    
+
                         board.addNewField();
-                        drawTable();
+                        drawBoard();
 
                     }
                 }
                 else if (board.isGameOver())
                     gameOver();
+
+             
             }
             else if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
@@ -191,14 +211,19 @@ namespace _2048
                     pressS.BackColor = Color.Orange;
                     if (!board.isGameOver())
                     {
-                   
+
                         board.addNewField();
-                        drawTable();
+                        drawBoard();
 
                     }
                 }
                 else if (board.isGameOver())
                     gameOver();
+            }
+            if (biggestValue == 2048)
+            {
+                congratulations.Visible = true;
+                gameOver();
             }
             score.updateScore(board.getScoreValue());
             score.drawScore(scoreLabel);
@@ -209,7 +234,7 @@ namespace _2048
                 score.drawScore(bestScoreLabel);
             }
 
-           
+
 
         }
         private void drawGameOver()
@@ -221,7 +246,7 @@ namespace _2048
         private void gameOver()
         {
             drawGameOver();
-            if(score.isScoreTheBest())
+            if (score.isScoreTheBest())
             {
                 score.updateBestScore();
 
@@ -239,12 +264,12 @@ namespace _2048
                 score.drawBestScore(bestScoreLabel);
 
                 board.resetBoard();
-           drawTable();
+                drawBoard();
             }
-                    
+
         }
 
-        
+
 
         private void changeToOrange(object sender, EventArgs e)
         {
@@ -258,22 +283,45 @@ namespace _2048
 
         }
 
-        private void PlayAgain_Click_1(object sender, EventArgs e)
+
+        private void backToMenu()
+        {
+            DialogResult dialogResult = MessageBox.Show("Do You want to back to Menu?", "Back to Menu", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Menu menu = new Menu();
+                menu.Show();
+                this.Close();
+            }
+        }
+
+
+        private void menu_Click(object sender, EventArgs e)
+        {
+            backToMenu();
+
+
+        }
+
+        private void PlayAgain_Click_2(object sender, EventArgs e)
         {
             gameOverPanel.Visible = false;
             gameOverPanel.Enabled = false;
+            congratulations.Visible = false;
 
 
             score.resetScore();
             score.drawScore(scoreLabel);
 
             board.resetBoard();
-            drawTable();
+            drawBoard();
         }
 
-        private void backToMenuButton_Click(object sender, EventArgs e)
+        private void backToMenuButton_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            backToMenu();
         }
+
+      
     }
 }
